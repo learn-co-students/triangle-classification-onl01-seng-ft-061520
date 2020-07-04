@@ -7,9 +7,17 @@ class Triangle
     @side3 = side3
   end
 
+  def valid_triangle_inequality?(side_a, side_b, side_c)
+    (side_a + side_b) > side_c
+  end
+
   def valid?
-    if side1.positive? && side2.positive? && side3.positive? && (side1 + side2) > side3 && (side2 + side3) > side1 && (side1 + side3) > side2
-      true
+    if side1.positive? && side2.positive? && side3.positive?
+      if valid_triangle_inequality?(side1, side2, side3) && valid_triangle_inequality?(side1, side3, side2) && valid_triangle_inequality?(side2, side3, side1)
+        true
+      else
+        false
+      end
     else
       false
     end
